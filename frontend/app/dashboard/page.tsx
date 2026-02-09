@@ -6,9 +6,10 @@ import CotacaoForm from '../components/CotacaoForm';
 import CotacaoResult from '../components/CotacaoResult';
 import { BigNumber, VisitantesOnline } from '../components/BigNumbers';
 import { Card, CardContent } from '@/components/ui/card';
-import { Activity, TrendingUp, DollarSign, Target } from 'lucide-react';
+import { Activity, TrendingUp, DollarSign, Target, Sparkles } from 'lucide-react';
 import { CotacaoOutput } from '../services/api';
 import { getDashboardStats } from '@/app/actions/leads';
+import Logo from '../components/Logo';
 
 interface PDFExtraido {
   idades: number[];
@@ -71,12 +72,24 @@ export default function DashboardPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Dashboard - Humano Saúde</h1>
-        <p className="text-muted-foreground">
-          Sistema de cotações de planos de saúde com IA
-        </p>
+      {/* Header com Logo Oficial */}
+      <div className="mb-8 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Logo variant="1" size="lg" className="max-w-[240px]" />
+          <div className="h-12 w-px bg-white/10" />
+          <div>
+            <h1 className="text-3xl font-bold mb-1 font-[family-name:var(--font-heading)]">Dashboard</h1>
+            <p className="text-muted-foreground">
+              Sistema de cotações de planos de saúde com IA
+            </p>
+          </div>
+        </div>
+        
+        {/* Badge Enterprise */}
+        <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#D4AF37]/20 to-[#F6E05E]/10 border border-[#D4AF37]/30">
+          <Sparkles className="h-4 w-4 text-[#D4AF37]" />
+          <span className="text-sm font-semibold text-[#F6E05E]">Enterprise</span>
+        </div>
       </div>
 
       {/* Stats Cards */}
