@@ -39,7 +39,7 @@ import {
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
+import Logo, { LogoIcon, LogoWithGradientText } from "./Logo"
 
 // ============================================
 // TIPOS
@@ -380,7 +380,7 @@ export default function DockSidebar() {
         onMouseLeave={() => setIsExpanded(false)}
         className="hidden lg:flex fixed left-0 top-0 h-screen bg-[#050505]/95 backdrop-blur-xl border-r border-white/10 flex-col z-50"
       >
-        {/* HEADER - Logo */}
+        {/* HEADER - Logo Oficial Humano Saúde */}
         <div className="h-16 flex items-center justify-center border-b border-white/10 px-4">
           <AnimatePresence mode="wait">
             {isExpanded ? (
@@ -390,19 +390,8 @@ export default function DockSidebar() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-3"
               >
-                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#F6E05E] flex items-center justify-center">
-                  <Sparkles className="h-5 w-5 text-black" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F6E05E]">
-                    Humano Saúde
-                  </span>
-                  <span className="text-[10px] text-white/40">
-                    Enterprise
-                  </span>
-                </div>
+                <Logo variant="1" size="md" className="max-w-[200px]" />
               </motion.div>
             ) : (
               <motion.div
@@ -411,9 +400,8 @@ export default function DockSidebar() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.2 }}
-                className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#F6E05E] flex items-center justify-center"
               >
-                <Sparkles className="h-6 w-6 text-black" />
+                <LogoIcon variant="1" size="md" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -604,19 +592,9 @@ export default function DockSidebar() {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="lg:hidden fixed left-0 top-0 h-screen w-72 bg-[#050505]/98 backdrop-blur-xl border-r border-white/10 flex flex-col z-50"
             >
-              {/* Header */}
+              {/* Header - Logo Oficial Mobile */}
               <div className="h-16 flex items-center justify-between px-4 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#F6E05E] flex items-center justify-center">
-                    <Sparkles className="h-5 w-5 text-black" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F6E05E]">
-                      Humano Saúde
-                    </span>
-                    <span className="text-[10px] text-white/40">Enterprise</span>
-                  </div>
-                </div>
+                <Logo variant="1" size="md" className="max-w-[160px]" />
 
                 <button
                   onClick={() => setIsMobileOpen(false)}
