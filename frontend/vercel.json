@@ -7,19 +7,19 @@
   "crons": [
     {
       "path": "/api/social-flow/cron?job=publish",
-      "schedule": "* * * * *"
+      "schedule": "0 */1 * * *"
     },
     {
       "path": "/api/social-flow/cron?job=analytics",
-      "schedule": "0 * * * *"
+      "schedule": "0 6 * * *"
     },
     {
       "path": "/api/social-flow/cron?job=tokens",
-      "schedule": "0 */6 * * *"
+      "schedule": "0 3 * * *"
     },
     {
       "path": "/api/social-flow/cron?job=sync",
-      "schedule": "0 3 * * *"
+      "schedule": "0 4 * * *"
     }
   ]
 }
