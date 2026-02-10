@@ -2,13 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // Credenciais de admin (DEVEM ser definidas via variáveis de ambiente)
 const ADMIN_CREDENTIALS = {
-  email: process.env.ADMIN_EMAIL || '',
-  password: process.env.ADMIN_PASSWORD || '',
+  email: (process.env.ADMIN_EMAIL || '').trim(),
+  password: (process.env.ADMIN_PASSWORD || '').trim(),
 };
 
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
+    const trimmedEmail = (email || '').trim();
+    const trimmedPassword = (password || '').trim();
 
     // Verificar se credenciais de admin estão configuradas
     if (!ADMIN_CREDENTIALS.email || !ADMIN_CREDENTIALS.password) {
@@ -20,7 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validar credenciais
-    if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+    if (trimmedEmail === ADMIN_CREDENTIALS.email && trimmedPassword === ADMIN_CREDENTIALS.password) {
       // Gerar token simples (em produção usar JWT)
       const token = Buffer.from(`${email}:${Date.now()}`).toString('base64');
 
