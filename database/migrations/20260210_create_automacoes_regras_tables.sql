@@ -33,6 +33,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP TRIGGER IF EXISTS set_automacoes_updated_at ON public.automacoes;
 CREATE TRIGGER set_automacoes_updated_at
 BEFORE UPDATE ON public.automacoes
 FOR EACH ROW
@@ -80,6 +81,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP TRIGGER IF EXISTS set_regras_ia_updated_at ON public.regras_ia;
 CREATE TRIGGER set_regras_ia_updated_at
 BEFORE UPDATE ON public.regras_ia
 FOR EACH ROW

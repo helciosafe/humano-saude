@@ -17,6 +17,18 @@
 -- ========================================
 
 -- ========================================
+-- 0. FUNÇÃO AUXILIAR: update_updated_at_column
+-- ========================================
+-- Cria a função se ainda não existir (usada pelos triggers abaixo)
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- ========================================
 -- 1. TABELA: tarefas
 -- ========================================
 CREATE TABLE IF NOT EXISTS public.tarefas (
@@ -33,9 +45,9 @@ CREATE TABLE IF NOT EXISTS public.tarefas (
   -- Atribuição
   atribuido_a VARCHAR(255),
 
-  -- Relacionamentos
-  lead_id UUID REFERENCES public.insurance_leads(id) ON DELETE SET NULL,
-  proposta_id UUID REFERENCES public.propostas(id) ON DELETE SET NULL,
+  -- Relacionamentos (sem FK rígida — tabelas podem não existir ainda)
+  lead_id UUID,
+  proposta_id UUID,
 
   -- Datas
   data_vencimento DATE,
@@ -63,6 +75,7 @@ CREATE INDEX IF NOT EXISTS idx_tarefas_atribuido_a ON public.tarefas(atribuido_a
 CREATE INDEX IF NOT EXISTS idx_tarefas_created_at ON public.tarefas(created_at DESC);
 
 -- Trigger updated_at
+DROP TRIGGER IF EXISTS update_tarefas_updated_at ON public.tarefas;
 CREATE TRIGGER update_tarefas_updated_at
   BEFORE UPDATE ON public.tarefas
   FOR EACH ROW
@@ -114,9 +127,9 @@ CREATE TABLE IF NOT EXISTS public.documentos (
   tamanho BIGINT DEFAULT 0,
   categoria VARCHAR(100) DEFAULT 'Geral',
 
-  -- Relacionamentos
-  lead_id UUID REFERENCES public.insurance_leads(id) ON DELETE SET NULL,
-  proposta_id UUID REFERENCES public.propostas(id) ON DELETE SET NULL,
+  -- Relacionamentos (sem FK rígida — tabelas podem não existir ainda)
+  lead_id UUID,
+  proposta_id UUID,
   uploaded_by VARCHAR(255),
 
   -- Extras
@@ -132,6 +145,7 @@ CREATE INDEX IF NOT EXISTS idx_documentos_categoria ON public.documentos(categor
 CREATE INDEX IF NOT EXISTS idx_documentos_created_at ON public.documentos(created_at DESC);
 
 -- Trigger updated_at
+DROP TRIGGER IF EXISTS update_documentos_updated_at ON public.documentos;
 CREATE TRIGGER update_documentos_updated_at
   BEFORE UPDATE ON public.documentos
   FOR EACH ROW
