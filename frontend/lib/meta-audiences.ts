@@ -75,7 +75,7 @@ export const AUDIENCE_TEMPLATES: AudienceTemplate[] = [
       age_max: 55,
       interests: [
         ...INTEREST_MAPPINGS['Empresas PME'],
-        ...INTEREST_MAPPINGS['RH e Benefícios'],
+        ...INTEREST_MAPPINGS['RH / Benefícios'],
       ],
       publisher_platforms: ['facebook', 'instagram'],
       facebook_positions: ['feed', 'video_feeds', 'story'],
