@@ -7,7 +7,7 @@
   "crons": [
     {
       "path": "/api/social-flow/cron?job=publish",
-      "schedule": "0 */1 * * *"
+      "schedule": "0 8 * * *"
     },
     {
       "path": "/api/social-flow/cron?job=analytics",
