@@ -28,6 +28,7 @@ import {
   CheckCircle,
   Send,
   ClipboardList,
+  Link2,
 } from 'lucide-react';
 import Link from 'next/link';
 import NextImage from 'next/image';
@@ -115,6 +116,13 @@ const menuItems: SidebarItem[] = [
     icon: CalendarClock,
     href: `${B}/renovacoes`,
     badge: { text: '3', variant: 'warning' },
+  },
+  {
+    id: 'indicacoes',
+    label: 'Indicações',
+    icon: Link2,
+    href: `${B}/indicacoes`,
+    badge: { text: 'NOVO', variant: 'gold' },
   },
   {
     id: 'cadastro',
