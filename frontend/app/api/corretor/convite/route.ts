@@ -39,10 +39,11 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Convite enviado com sucesso',
     });
-  } catch (err) {
-    console.error('[convite-corretor] erro:', err);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('[convite-corretor] erro:', msg, err);
     return NextResponse.json(
-      { error: 'Erro interno do servidor' },
+      { error: msg || 'Erro interno do servidor' },
       { status: 500 }
     );
   }

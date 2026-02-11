@@ -812,8 +812,9 @@ export async function enviarEmailConviteCorretor(dados: {
     if (error) { console.error('[email] convite corretor:', error); return { success: false, error: error.message }; }
     console.log('[email] Email convite corretor enviado', data?.id);
     return { success: true, id: data?.id };
-  } catch (err) {
-    console.error('[email] convite corretor:', err);
-    return { success: false, error: 'Erro inesperado' };
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('[email] convite corretor erro:', msg, err);
+    return { success: false, error: msg || 'Erro inesperado' };
   }
 }
